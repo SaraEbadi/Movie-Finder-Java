@@ -8,7 +8,6 @@ public class Genres {
     private int id;
     @SerializedName("name")
     private String name;
-
     public int getId() {
         return id;
     }
