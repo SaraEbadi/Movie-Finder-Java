@@ -6,8 +6,6 @@ import java.util.List;
 
 public class DetailsModel {
     @SerializedName("backdrop_path")
-
-
     private String backDropPath;
     @SerializedName("budget")
     private int budget;
