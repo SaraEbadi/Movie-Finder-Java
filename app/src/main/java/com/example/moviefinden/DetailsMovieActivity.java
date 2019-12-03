@@ -2,6 +2,7 @@ package com.example.moviefinden;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -16,6 +17,9 @@ public class DetailsMovieActivity extends AppCompatActivity {
     TextView txtTitle;
     TextView txtRateAverage;
     TextView txtOverView;
+    TextView txtGenres;
+    TextView txtBudget;
+    TextView txtRevenue;
 
 
     @Override
@@ -29,11 +33,15 @@ public class DetailsMovieActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void init(){
         txtTitle = findViewById(R.id.txtTitle);
         txtRateAverage = findViewById(R.id.txtRateAverage);
         txtOverView = findViewById(R.id.txtOverView);
         imgMovie = findViewById(R.id.imgMovie);
+        txtGenres = findViewById(R.id.movieGenres);
+        txtRevenue = findViewById(R.id.txtRevenue);
+        txtBudget = findViewById(R.id.txtBudget);
         Intent intent = getIntent();
 
         intent.getIntExtra("budget",11);
@@ -47,6 +55,9 @@ public class DetailsMovieActivity extends AppCompatActivity {
         txtTitle.setText(intent.getStringExtra("originalTitle"));
         txtRateAverage.setText(String.valueOf(intent.getDoubleExtra("voteAverage",8.5)));
         txtOverView.setText(intent.getStringExtra("overview"));
+        txtGenres.setText(intent.getStringExtra("genres"));
+        txtRevenue.setText(intent.getIntExtra("revenue",25500) + " $");
+        txtBudget.setText(intent.getIntExtra("budget",2568845)+ " $");
 
 
 

@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements IMovieOnItemListe
 
 
     @Override
-    public void onClickListener(View view, int position) {
+    public void onClickListener(View view, final int position) {
 
         Call<DetailsModel> requestDetails = generateRetrofit.apiClient().getDetailsMovie(resultSearchList.get(position).getId(),Constatnt.API_KEY);
         requestDetails.enqueue(new Callback<DetailsModel>() {
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements IMovieOnItemListe
                 Intent intent = new Intent(MainActivity.this, DetailsMovieActivity.class);
 
                 intent.putExtra("backDropPath", detailsModel.getBackDropPath() != null ? detailsModel.getBackDropPath() : "");
+                intent.putExtra("genres", detailsModel.getGenres().get(0).getName()!= null ? detailsModel.getGenres().get(0).getName() : "");
                 intent.putExtra("budget", detailsModel.getBudget() != 0 ? detailsModel.getBudget() : "");
                 intent.putExtra("originalLanguage", detailsModel.getOriginalLanguage() != null ? detailsModel.getOriginalLanguage() : "");
                 intent.putExtra("originalTitle", detailsModel.getOriginalTitle()!= null ? detailsModel.getOriginalTitle() : "");

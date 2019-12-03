@@ -8,7 +8,7 @@ public class DetailsModel {
     @SerializedName("backdrop_path")
     private String backDropPath;
     @SerializedName("budget")
-    private int budget;
+    private Integer budget;
     @SerializedName("genres")
     private List<Genres> genres;
     @SerializedName("original_language")
@@ -20,7 +20,7 @@ public class DetailsModel {
     @SerializedName("release_date")
     private String releaseDate;
     @SerializedName("revenue")
-    private int revenue;
+    private Integer revenue;
     @SerializedName("status")
     private String status;
     @SerializedName("vote_average")
