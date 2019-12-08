@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
+    android:background="@color/colorGray"
     >
+
 
 
     <EditText
@@ -44,6 +46,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.1" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movieRecyclerView"

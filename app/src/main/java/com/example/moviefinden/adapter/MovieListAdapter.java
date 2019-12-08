@@ -1,6 +1,5 @@
 package com.example.moviefinden.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefinden.MainActivity;
+import com.example.moviefinden.IMovieOnItemListener;
 import com.example.moviefinden.R;
-import com.example.moviefinden.model.MovieModel;
 import com.example.moviefinden.model.ResultSearch;
 import com.squareup.picasso.Picasso;
 
@@ -24,6 +22,7 @@ import java.util.List;
 public class MovieListAdapter extends ListAdapter<ResultSearch, MovieListAdapter.MovieViewHolder> {
 
     List<ResultSearch> resultSearchList;
+    IMovieOnItemListener movieOnClickListener;
 
     public MovieListAdapter(@NonNull DiffUtil.ItemCallback<ResultSearch> diffCallback) {
         super(diffCallback);
@@ -58,23 +57,34 @@ public class MovieListAdapter extends ListAdapter<ResultSearch, MovieListAdapter
 
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public void setOnClickListener(IMovieOnItemListener movieOnClickListener){
+        this.movieOnClickListener = movieOnClickListener;
+    }
+
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         ImageView imgPosterPath;
         TextView titleMovie;
         TextView voteAverage;
         TextView releaseDate;
+
         public MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPosterPath = itemView.findViewById(R.id.imgPoster);
             titleMovie = itemView.findViewById(R.id.txtTitleMovie);
             voteAverage = itemView.findViewById(R.id.txtVoteAverage);
             releaseDate = itemView.findViewById(R.id.txtReleaseDate);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (movieOnClickListener!= null){
+                movieOnClickListener.onClickListener(v,getAdapterPosition());
+            }
         }
     }
 
-    public interface movieOnClickListener{
-        void onClickListener(int position);
-    }
 
 }
 
