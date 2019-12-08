@@ -1,14 +1,14 @@
-package com.example.moviefinden;
+package com.example.moviefinden.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.moviefinden.R;
 import com.squareup.picasso.Picasso;
 
 public class DetailsMovieActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.moviefinden;
+package com.example.moviefinden.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,16 +11,17 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.moviefinden.adapter.MovieListAdapter;
-import com.example.moviefinden.model.DetailsModel;
-import com.example.moviefinden.model.Genres;
-import com.example.moviefinden.model.MovieModel;
-import com.example.moviefinden.model.ResultSearch;
-import com.example.moviefinden.retrofit.GenerateRetrofit;
-import com.squareup.picasso.Picasso;
+import com.example.moviefinden.Constatnt;
+import com.example.moviefinden.IMovieOnItemListener;
+import com.example.moviefinden.MovieListDiffutils;
+import com.example.moviefinden.R;
+import com.example.moviefinden.view.adapter.MovieListAdapter;
+import com.example.moviefinden.service.model.DetailsModel;
+import com.example.moviefinden.service.model.MovieModel;
+import com.example.moviefinden.service.model.ResultSearch;
+import com.example.moviefinden.service.repository.GenerateRetrofit;
 
 import java.util.List;
 

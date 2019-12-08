@@ -1,4 +1,4 @@
-package com.example.moviefinden.retrofit;
+package com.example.moviefinden.service.repository;
 
 import com.example.moviefinden.Constatnt;
 

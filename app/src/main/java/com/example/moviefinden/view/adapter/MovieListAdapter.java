@@ -1,4 +1,4 @@
-package com.example.moviefinden.adapter;
+package com.example.moviefinden.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviefinden.IMovieOnItemListener;
 import com.example.moviefinden.R;
-import com.example.moviefinden.model.ResultSearch;
+import com.example.moviefinden.service.model.ResultSearch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
