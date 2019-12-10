@@ -1,6 +1,6 @@
 package com.example.moviefinden.service.repository;
 
-import com.example.moviefinden.Constatnt;
+import com.example.moviefinden.utils.Constatnt;
 
 import java.util.concurrent.TimeUnit;
 

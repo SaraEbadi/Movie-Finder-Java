@@ -1,4 +1,4 @@
-package com.example.moviefinden;
+package com.example.moviefinden.utils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;

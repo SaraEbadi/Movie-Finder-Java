@@ -2,22 +2,27 @@ package com.example.moviefinden.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 
-import com.example.moviefinden.utils.FragmentChangeListener;
 import com.example.moviefinden.R;
 
-public class MainActivity extends AppCompatActivity implements FragmentChangeListener {
-
+public class MainActivity extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,MainFragment.newInstance()).commitNow();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container,MainFragment.newInstance()).commitNow();
 
+
+//        NavHostFragment.findNavController(MainFragment.newInstance());
+
+//        navController = Navigation.findNavController(view);
 
     }
 
@@ -49,10 +54,4 @@ public class MainActivity extends AppCompatActivity implements FragmentChangeLis
 //
 
 
-    @Override
-    public void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,fragment)
-                .addToBackStack(fragment.toString())
-                .commitNow();
-    }
 }

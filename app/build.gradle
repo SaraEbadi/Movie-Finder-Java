@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
@@ -48,4 +49,9 @@ dependencies {
     //navigation component in android
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    //material dependency
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+
 }

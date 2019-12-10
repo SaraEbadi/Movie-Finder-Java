@@ -9,7 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.moviefinden.Constatnt;
+import com.example.moviefinden.utils.Constatnt;
 import com.example.moviefinden.service.model.DetailsModel;
 import com.example.moviefinden.service.repository.GenerateRetrofit;
 

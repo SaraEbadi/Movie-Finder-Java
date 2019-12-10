@@ -1,7 +1,6 @@
 package com.example.moviefinden.view.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,9 +21,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.moviefinden.utils.FragmentChangeListener;
-import com.example.moviefinden.IMovieOnItemListener;
-import com.example.moviefinden.MovieListDiffutils;
+import com.example.moviefinden.utils.IMovieOnItemListener;
+import com.example.moviefinden.utils.MovieListDiffutils;
 import com.example.moviefinden.R;
 import com.example.moviefinden.service.model.ResultSearch;
 import com.example.moviefinden.service.repository.GenerateRetrofit;
@@ -36,23 +37,14 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class MainFragment extends Fragment implements IMovieOnItemListener {
 
-    Fragment context;
+    private Fragment context;
     private RecyclerView movieRecyclerView;
     private EditText edtMovieSearch;
-    private ImageView imgMovieSearch;
     private MovieListAdapter movieListAdapter;
-    List<ResultSearch> resultSearchList;
+    private List<ResultSearch> resultSearchList;
     private GenerateRetrofit generateRetrofit;
-    MovieViewModel movieViewModel;
-
-
-
-    public static MainFragment newInstance() {
-        Bundle args = new Bundle();
-        MainFragment fragment = new MainFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private MovieViewModel movieViewModel;
+    NavController navController;
 
 
     @Override
@@ -60,6 +52,7 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false);
+
 
 
     }
@@ -70,27 +63,14 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
         context = this;
         init(view);
 
-
-
     }
 
-
-
-    @Override
-    public void onClickListener(View view, int position) {
-        Bundle bundle =new Bundle();
-        bundle.putInt("movieId",resultSearchList.get(position).getId());
-        DetailsFragment detailsFragment = new DetailsFragment();
-        detailsFragment.setArguments(bundle);
-        Fragment fr=new DetailsFragment();
-        FragmentChangeListener fc=(FragmentChangeListener)getActivity();
-        fc.replaceFragment(fr);
-    }
 
 
     public void generateMovieLists() {
         movieListAdapter = new MovieListAdapter(new MovieListDiffutils());
         movieRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        movieListAdapter.setOnClickListener(this);
         movieRecyclerView.setAdapter(movieListAdapter);
 
     }
@@ -99,11 +79,14 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
     public void init(View view) {
         movieRecyclerView = view.findViewById(R.id.movieRecyclerView);
         edtMovieSearch = view.findViewById(R.id.edtGetMovieSearch);
-        imgMovieSearch = view.findViewById(R.id.imgSearchMovie);
+        ImageView imgMovieSearch = view.findViewById(R.id.imgSearchMovie);
         generateMovieLists();
         Retrofit.Builder builder = new Retrofit.Builder();
         generateRetrofit = new GenerateRetrofit(builder);
         movieViewModel = ViewModelProviders.of(context).get(MovieViewModel.class);
+
+
+
 
         imgMovieSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,12 +96,23 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
                 movieViewModel.searchMovies(edtMovieSearch.getText().toString(),generateRetrofit).observe(context, new Observer<List<ResultSearch>>() {
                     @Override
                     public void onChanged(List<ResultSearch> resultSearches) {
-                        movieListAdapter.submitList(resultSearches);
+                        resultSearchList = resultSearches;
+                        movieListAdapter.submitList(resultSearchList);
                     }
                 });
             }
         });
+    }
 
+
+    @Override
+    public void onClickListener(View view, int position) {
+        Bundle bundle =new Bundle();
+        bundle.putInt("movieId",resultSearchList.get(position).getId());
+        DetailsFragment detailsFragment = new DetailsFragment();
+        detailsFragment.setArguments(bundle);
+        navController = Navigation.findNavController(getActivity(),R.id.navHostFragment);
+        navController.navigate(R.id.actionMainToSecond,bundle);
 
     }
 }
