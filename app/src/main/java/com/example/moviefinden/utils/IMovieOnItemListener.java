@@ -1,4 +1,4 @@
-package com.example.moviefinden;
+package com.example.moviefinden.utils;
 
 import android.view.View;
 

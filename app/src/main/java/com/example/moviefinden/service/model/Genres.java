@@ -1,4 +1,4 @@
-package com.example.moviefinden.model;
+package com.example.moviefinden.service.model;
 
 import com.google.gson.annotations.SerializedName;
 

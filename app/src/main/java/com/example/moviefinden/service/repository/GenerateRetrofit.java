@@ -1,10 +1,11 @@
-package com.example.moviefinden.retrofit;
+package com.example.moviefinden.service.repository;
 
-import com.example.moviefinden.Constatnt;
+import com.example.moviefinden.utils.Constatnt;
 
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,9 +14,12 @@ public class GenerateRetrofit {
     private Retrofit retrofit;
 
     public GenerateRetrofit(Retrofit.Builder retrofit) {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(20, TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .addInterceptor(logging)
                 .build();
 
         this.retrofit = retrofit

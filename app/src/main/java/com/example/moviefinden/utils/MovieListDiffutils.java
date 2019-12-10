@@ -1,9 +1,9 @@
-package com.example.moviefinden;
+package com.example.moviefinden.utils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.example.moviefinden.model.ResultSearch;
+import com.example.moviefinden.service.model.ResultSearch;
 
 public class MovieListDiffutils extends DiffUtil.ItemCallback<ResultSearch> {
     @Override

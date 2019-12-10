@@ -1,4 +1,4 @@
-package com.example.moviefinden.adapter;
+package com.example.moviefinden.view.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefinden.IMovieOnItemListener;
+import com.example.moviefinden.utils.IMovieOnItemListener;
 import com.example.moviefinden.R;
-import com.example.moviefinden.model.ResultSearch;
+import com.example.moviefinden.service.model.ResultSearch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -77,11 +77,11 @@ public class MovieListAdapter extends ListAdapter<ResultSearch, MovieListAdapter
             itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            if (movieOnClickListener!= null){
-                movieOnClickListener.onClickListener(v,getAdapterPosition());
-            }
+            @Override
+            public void onClick(View v) {
+                if (movieOnClickListener!= null){
+                    movieOnClickListener.onClickListener(v,getAdapterPosition());
+                }
         }
     }
 
