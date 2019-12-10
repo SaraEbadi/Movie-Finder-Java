@@ -20,6 +20,7 @@ android {
 }
 ext {
     lifeVersion = '2.1.0'
+    nav_version = "2.1.0"
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -35,10 +36,16 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
     implementation "androidx.lifecycle:lifecycle-extensions:${lifeVersion}"
     implementation "androidx.lifecycle:lifecycle-livedata:${lifeVersion}"
     implementation "androidx.lifecycle:lifecycle-runtime:${lifeVersion}"
     implementation "androidx.lifecycle:lifecycle-common-java8:${lifeVersion}"
+
+    //navigation component in android
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
 }
