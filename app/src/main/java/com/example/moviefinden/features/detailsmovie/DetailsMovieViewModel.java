@@ -1,4 +1,4 @@
-package com.example.moviefinden.viewmodel;
+package com.example.moviefinden.features.detailsmovie;
 
 import android.app.Application;
 import android.util.Log;
@@ -9,21 +9,21 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.moviefinden.utils.Constatnt;
-import com.example.moviefinden.service.model.DetailsModel;
-import com.example.moviefinden.service.repository.GenerateRetrofit;
+import com.example.moviefinden.base.Constatnt;
+import com.example.moviefinden.models.DetailsModel;
+import com.example.moviefinden.retrofit.GenerateRetrofit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
-public class DetailsViewModel extends AndroidViewModel {
+public class DetailsMovieViewModel extends AndroidViewModel {
 
     private MutableLiveData<DetailsModel> detailsLiveData;
 
 
-    public DetailsViewModel(@NonNull Application application) {
+    public DetailsMovieViewModel(@NonNull Application application) {
         super(application);
     }
 

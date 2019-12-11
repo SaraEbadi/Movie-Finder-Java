@@ -1,6 +1,5 @@
-package com.example.moviefinden.service.model;
+package com.example.moviefinden.models;
 
-import com.example.moviefinden.service.model.Genres;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

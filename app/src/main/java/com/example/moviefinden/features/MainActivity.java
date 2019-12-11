@@ -1,4 +1,4 @@
-package com.example.moviefinden.view.ui;
+package com.example.moviefinden.features;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

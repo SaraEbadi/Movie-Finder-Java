@@ -1,9 +1,5 @@
-package com.example.moviefinden.view.ui;
+package com.example.moviefinden.features.detailsmovie;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,23 +11,15 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.moviefinden.R;
-import com.example.moviefinden.service.model.DetailsModel;
-import com.example.moviefinden.service.model.ResultSearch;
-import com.example.moviefinden.service.repository.GenerateRetrofit;
-import com.example.moviefinden.viewmodel.DetailsViewModel;
-import com.example.moviefinden.viewmodel.MovieViewModel;
+import com.example.moviefinden.models.DetailsModel;
+import com.example.moviefinden.retrofit.GenerateRetrofit;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import retrofit2.Retrofit;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class DetailsFragment extends Fragment {
 
@@ -73,7 +61,7 @@ public class DetailsFragment extends Fragment {
         Bundle bundle = getArguments();
         int movieID = bundle.getInt("movieId",0);
 
-        DetailsViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel.class);
+        DetailsMovieViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsMovieViewModel.class);
         detailsViewModel.getDetails(movieID,generateRetrofit).observe(this, new Observer<DetailsModel>() {
             @Override
             public void onChanged(DetailsModel detailsModel) {

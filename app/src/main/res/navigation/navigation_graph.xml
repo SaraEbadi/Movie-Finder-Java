@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.moviefinden.view.ui.MainFragment"
+        android:name="com.example.moviefinden.features.searchmovie.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.moviefinden.view.ui.DetailsFragment"
+        android:name="com.example.moviefinden.features.detailsmovie.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
 </navigation>
