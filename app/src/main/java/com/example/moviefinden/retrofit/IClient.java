@@ -1,7 +1,7 @@
-package com.example.moviefinden.service.repository;
+package com.example.moviefinden.retrofit;
 
-import com.example.moviefinden.service.model.DetailsModel;
-import com.example.moviefinden.service.model.MovieModel;
+import com.example.moviefinden.models.DetailsModel;
+import com.example.moviefinden.models.MovieModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

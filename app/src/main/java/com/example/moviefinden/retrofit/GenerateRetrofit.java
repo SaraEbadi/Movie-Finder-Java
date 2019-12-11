@@ -1,6 +1,6 @@
-package com.example.moviefinden.service.repository;
+package com.example.moviefinden.retrofit;
 
-import com.example.moviefinden.utils.Constatnt;
+import com.example.moviefinden.base.Constatnt;
 
 import java.util.concurrent.TimeUnit;
 

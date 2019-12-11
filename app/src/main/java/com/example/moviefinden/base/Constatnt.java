@@ -1,4 +1,4 @@
-package com.example.moviefinden.utils;
+package com.example.moviefinden.base;
 
 public class Constatnt {
 

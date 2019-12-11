@@ -1,4 +1,4 @@
-package com.example.moviefinden.utils;
+package com.example.moviefinden.features.searchmovie.searchmovieadapter;
 
 import android.view.View;
 

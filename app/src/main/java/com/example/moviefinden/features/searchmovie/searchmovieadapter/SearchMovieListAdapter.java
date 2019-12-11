@@ -1,4 +1,4 @@
-package com.example.moviefinden.view.adapter;
+package com.example.moviefinden.features.searchmovie.searchmovieadapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,19 +12,18 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.moviefinden.utils.IMovieOnItemListener;
 import com.example.moviefinden.R;
-import com.example.moviefinden.service.model.ResultSearch;
+import com.example.moviefinden.models.ResultSearch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MovieListAdapter extends ListAdapter<ResultSearch, MovieListAdapter.MovieViewHolder> {
+public class SearchMovieListAdapter extends ListAdapter<ResultSearch, SearchMovieListAdapter.MovieViewHolder> {
 
     List<ResultSearch> resultSearchList;
     IMovieOnItemListener movieOnClickListener;
 
-    public MovieListAdapter(@NonNull DiffUtil.ItemCallback<ResultSearch> diffCallback) {
+    public SearchMovieListAdapter(@NonNull DiffUtil.ItemCallback<ResultSearch> diffCallback) {
         super(diffCallback);
     }
 

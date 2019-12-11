@@ -1,4 +1,4 @@
-package com.example.moviefinden.viewmodel;
+package com.example.moviefinden.features.searchmovie;
 
 import android.app.Application;
 import android.util.Log;
@@ -8,10 +8,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.moviefinden.utils.Constatnt;
-import com.example.moviefinden.service.model.MovieModel;
-import com.example.moviefinden.service.model.ResultSearch;
-import com.example.moviefinden.service.repository.GenerateRetrofit;
+import com.example.moviefinden.base.Constatnt;
+import com.example.moviefinden.models.MovieModel;
+import com.example.moviefinden.models.ResultSearch;
+import com.example.moviefinden.retrofit.GenerateRetrofit;
 
 import java.util.List;
 
@@ -19,12 +19,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MovieViewModel extends AndroidViewModel {
+public class SearchMovieViewModel extends AndroidViewModel {
 
 
     private MutableLiveData<List<ResultSearch>> data;
 
-    public MovieViewModel(@NonNull Application application) {
+    public SearchMovieViewModel(@NonNull Application application) {
         super(application);
 
     }

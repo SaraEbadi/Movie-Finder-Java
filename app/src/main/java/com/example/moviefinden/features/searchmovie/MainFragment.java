@@ -1,4 +1,4 @@
-package com.example.moviefinden.view.ui;
+package com.example.moviefinden.features.searchmovie;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +20,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.moviefinden.utils.IMovieOnItemListener;
-import com.example.moviefinden.utils.MovieListDiffutils;
+import com.example.moviefinden.features.detailsmovie.DetailsFragment;
+import com.example.moviefinden.features.searchmovie.searchmovieadapter.IMovieOnItemListener;
+import com.example.moviefinden.features.searchmovie.searchmovieadapter.MovieListDiffutils;
 import com.example.moviefinden.R;
-import com.example.moviefinden.service.model.ResultSearch;
-import com.example.moviefinden.service.repository.GenerateRetrofit;
-import com.example.moviefinden.view.adapter.MovieListAdapter;
-import com.example.moviefinden.viewmodel.MovieViewModel;
+import com.example.moviefinden.models.ResultSearch;
+import com.example.moviefinden.retrofit.GenerateRetrofit;
+import com.example.moviefinden.features.searchmovie.searchmovieadapter.SearchMovieListAdapter;
 
 import java.util.List;
 
@@ -40,10 +39,10 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
     private Fragment context;
     private RecyclerView movieRecyclerView;
     private EditText edtMovieSearch;
-    private MovieListAdapter movieListAdapter;
+    private SearchMovieListAdapter movieListAdapter;
     private List<ResultSearch> resultSearchList;
     private GenerateRetrofit generateRetrofit;
-    private MovieViewModel movieViewModel;
+    private SearchMovieViewModel movieViewModel;
     NavController navController;
 
 
@@ -68,7 +67,7 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
 
 
     public void generateMovieLists() {
-        movieListAdapter = new MovieListAdapter(new MovieListDiffutils());
+        movieListAdapter = new SearchMovieListAdapter(new MovieListDiffutils());
         movieRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         movieListAdapter.setOnClickListener(this);
         movieRecyclerView.setAdapter(movieListAdapter);
@@ -83,7 +82,7 @@ public class MainFragment extends Fragment implements IMovieOnItemListener {
         generateMovieLists();
         Retrofit.Builder builder = new Retrofit.Builder();
         generateRetrofit = new GenerateRetrofit(builder);
-        movieViewModel = ViewModelProviders.of(context).get(MovieViewModel.class);
+        movieViewModel = ViewModelProviders.of(context).get(SearchMovieViewModel.class);
 
 
 
