@@ -16,14 +16,13 @@ import android.widget.TextView;
 
 import com.example.moviefinden.R;
 import com.example.moviefinden.models.DetailsModel;
-import com.example.moviefinden.retrofit.GenerateRetrofit;
+import com.example.moviefinden.retrofit.RetrofitInstance;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Retrofit;
 
 public class DetailsFragment extends Fragment {
 
-    private GenerateRetrofit generateRetrofit;
     ImageView imgMovie;
     TextView txtTitle;
     TextView txtRateAverage;
@@ -59,13 +58,13 @@ public class DetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         Bundle bundle = getArguments();
-        int movieID = bundle.getInt("movieId",0);
+        int movieID = bundle.getInt("movieId", 0);
 
         DetailsMovieViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsMovieViewModel.class);
-        detailsViewModel.getDetails(movieID,generateRetrofit).observe(this, new Observer<DetailsModel>() {
+        detailsViewModel.getDetails(movieID).observe(this, new Observer<DetailsModel>() {
             @Override
             public void onChanged(DetailsModel detailsModel) {
-                Picasso.with(getContext())
+                Picasso.get()
                         .load("https://image.tmdb.org/t/p/original" + detailsModel.getBackDropPath())
                         .centerInside()
                         .fit()
@@ -89,10 +88,6 @@ public class DetailsFragment extends Fragment {
         txtGenres = view.findViewById(R.id.movieGenres);
         txtRevenue = view.findViewById(R.id.txtRevenue);
         txtBudget = view.findViewById(R.id.txtBudget);
-        Retrofit.Builder builder = new Retrofit.Builder();
-        generateRetrofit = new GenerateRetrofit(builder);
-
-
     }
 
 

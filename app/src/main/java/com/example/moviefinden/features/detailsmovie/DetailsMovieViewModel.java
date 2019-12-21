@@ -11,7 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.moviefinden.base.Constatnt;
 import com.example.moviefinden.models.DetailsModel;
-import com.example.moviefinden.retrofit.GenerateRetrofit;
+import com.example.moviefinden.retrofit.RetrofitInstance;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,16 +21,18 @@ import retrofit2.internal.EverythingIsNonNull;
 public class DetailsMovieViewModel extends AndroidViewModel {
 
     private MutableLiveData<DetailsModel> detailsLiveData;
+    private RetrofitInstance retrofitInstance;
 
 
     public DetailsMovieViewModel(@NonNull Application application) {
         super(application);
+        retrofitInstance = new RetrofitInstance();
     }
 
-    public LiveData<DetailsModel> getDetails(int id, GenerateRetrofit generateRetrofit) {
+    public LiveData<DetailsModel> getDetails(int id) {
         if (detailsLiveData == null) {
             detailsLiveData = new MutableLiveData<>();
-            Call<DetailsModel> requestDetails = generateRetrofit.apiClient().getDetailsMovie(id, Constatnt.API_KEY);
+            Call<DetailsModel> requestDetails = retrofitInstance.apiClient().getDetailsMovie(id, Constatnt.API_KEY);
             requestDetails.enqueue(new Callback<DetailsModel>() {
                 @Override
                 @EverythingIsNonNull

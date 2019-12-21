@@ -20,8 +20,8 @@ import java.util.List;
 
 public class SearchMovieListAdapter extends ListAdapter<ResultSearch, SearchMovieListAdapter.MovieViewHolder> {
 
-    List<ResultSearch> resultSearchList;
-    IMovieOnItemListener movieOnClickListener;
+    private List<ResultSearch> resultSearchList;
+    private IMovieOnItemListener movieOnClickListener;
 
     public SearchMovieListAdapter(@NonNull DiffUtil.ItemCallback<ResultSearch> diffCallback) {
         super(diffCallback);
@@ -46,12 +46,12 @@ public class SearchMovieListAdapter extends ListAdapter<ResultSearch, SearchMovi
         holder.titleMovie.setText(resultSearchList.get(position).getOriginalTitle());
         holder.voteAverage.setText(String.valueOf(resultSearchList.get(position).getVoteAverage()));
         holder.releaseDate.setText(resultSearchList.get(position).getReleaseDate());
-        Picasso.with(holder.imgPosterPath.getContext())
+
+        Picasso.get()
                 .load("https://image.tmdb.org/t/p/original"+resultSearchList.get(position).getPosterPath())
                 .centerInside()
                 .fit()
                 .into(holder.imgPosterPath);
-
 
 
     }

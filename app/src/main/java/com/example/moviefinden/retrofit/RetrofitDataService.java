@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface IClient {
+public interface RetrofitDataService {
 
     @GET("search/movie")
     Observable<MovieModel> getSearchMovie(
