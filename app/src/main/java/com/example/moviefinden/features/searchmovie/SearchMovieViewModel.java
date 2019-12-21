@@ -5,11 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.moviefinden.data.ConcatRepository;
 import com.example.moviefinden.models.ResultSearch;
-import com.example.moviefinden.retrofit.RetrofitInstance;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class SearchMovieViewModel extends AndroidViewModel {
 
     public SearchMovieViewModel(@NonNull Application application) {
         super(application);
-        this.concatRepository = new ConcatRepository(new RetrofitInstance());
+        this.concatRepository = new ConcatRepository();
     }
 
     public LiveData<List<ResultSearch>> getAllMovie(String keySearchMovie) {

@@ -1,11 +1,11 @@
 package com.example.moviefinden.data;
 
-import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.moviefinden.base.Constatnt;
+import com.example.moviefinden.models.DetailsModel;
 import com.example.moviefinden.models.MovieModel;
 import com.example.moviefinden.models.ResultSearch;
 import com.example.moviefinden.retrofit.RetrofitInstance;
@@ -22,12 +22,14 @@ import io.reactivex.schedulers.Schedulers;
 public class ConcatRepository {
 
     private List<ResultSearch> resultSearchList;
-    private MutableLiveData<List<ResultSearch>> mutableLiveData = new MutableLiveData<>();
+    private DetailsModel detailsModel;
+    private MutableLiveData<List<ResultSearch>> mutableLiveDataResultSearch = new MutableLiveData<>();
+    private MutableLiveData<DetailsModel> mutableLiveDataDetailsModel = new MutableLiveData<>();
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private final RetrofitInstance retrofitInstance;
 
-    public ConcatRepository(RetrofitInstance retrofitInstance) {
-        this.retrofitInstance = retrofitInstance;
+    public ConcatRepository() {
+        this.retrofitInstance = new RetrofitInstance();
     }
 
     public MutableLiveData<List<ResultSearch>> getMovieSearch(String keySearchMovie) {
@@ -50,12 +52,38 @@ public class ConcatRepository {
 
                     @Override
                     public void onComplete() {
-                        mutableLiveData.postValue(resultSearchList);
+                        mutableLiveDataResultSearch.postValue(resultSearchList);
                     }
                 })
         );
-        return mutableLiveData;
+        return mutableLiveDataResultSearch;
+    }
 
+
+    public MutableLiveData<DetailsModel> getDetailMovie(int id) {
+        Observable<DetailsModel> detailsModelObservable = retrofitInstance.apiClient().getDetailsMovie(id, Constatnt.API_KEY);
+        compositeDisposable.add(detailsModelObservable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<DetailsModel>() {
+                    @Override
+                    public void onNext(DetailsModel model) {
+                        detailsModel = model;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        mutableLiveDataDetailsModel.postValue(detailsModel);
+                    }
+                })
+        );
+
+        return mutableLiveDataDetailsModel;
     }
 
 

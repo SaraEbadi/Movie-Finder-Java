@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.moviefinden.R;
 import com.example.moviefinden.models.DetailsModel;
+import com.example.moviefinden.models.MovieModel;
 import com.example.moviefinden.retrofit.RetrofitInstance;
 import com.squareup.picasso.Picasso;
 
@@ -23,25 +24,17 @@ import retrofit2.Retrofit;
 
 public class DetailsFragment extends Fragment {
 
-    ImageView imgMovie;
-    TextView txtTitle;
-    TextView txtRateAverage;
-    TextView txtOverView;
-    TextView txtGenres;
-    TextView txtBudget;
-    TextView txtRevenue;
+    private ImageView imgMovie;
+    private TextView txtTitle;
+    private TextView txtRateAverage;
+    private TextView txtOverView;
+    private TextView txtGenres;
+    private TextView txtBudget;
+    private TextView txtRevenue;
+    private DetailsMovieViewModel detailsViewModel;
+    private int movieID;
 
 
-    public DetailsFragment() {
-        // Required empty public constructor
-    }
-
-    public static DetailsFragment newInstance() {
-        Bundle args = new Bundle();
-        DetailsFragment fragment = new DetailsFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
 
     @Override
@@ -57,10 +50,26 @@ public class DetailsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        Bundle bundle = getArguments();
-        int movieID = bundle.getInt("movieId", 0);
+        setViewWithData();
 
-        DetailsMovieViewModel detailsViewModel = ViewModelProviders.of(this).get(DetailsMovieViewModel.class);
+
+
+    }
+
+    public void init(View view) {
+        txtTitle = view.findViewById(R.id.txtTitle);
+        txtRateAverage = view.findViewById(R.id.txtRateAverage);
+        txtOverView = view.findViewById(R.id.txtOverView);
+        imgMovie = view.findViewById(R.id.imgMovie);
+        txtGenres = view.findViewById(R.id.movieGenres);
+        txtRevenue = view.findViewById(R.id.txtRevenue);
+        txtBudget = view.findViewById(R.id.txtBudget);
+        Bundle bundle = getArguments();
+        movieID = bundle.getInt("movieId", 0);
+    }
+
+    public void setViewWithData(){
+        detailsViewModel = ViewModelProviders.of(this).get(DetailsMovieViewModel.class);
         detailsViewModel.getDetails(movieID).observe(this, new Observer<DetailsModel>() {
             @Override
             public void onChanged(DetailsModel detailsModel) {
@@ -77,18 +86,11 @@ public class DetailsFragment extends Fragment {
                 txtBudget.setText(detailsModel.getBudget() + " $");
             }
         });
-
     }
 
-    public void init(View view) {
-        txtTitle = view.findViewById(R.id.txtTitle);
-        txtRateAverage = view.findViewById(R.id.txtRateAverage);
-        txtOverView = view.findViewById(R.id.txtOverView);
-        imgMovie = view.findViewById(R.id.imgMovie);
-        txtGenres = view.findViewById(R.id.movieGenres);
-        txtRevenue = view.findViewById(R.id.txtRevenue);
-        txtBudget = view.findViewById(R.id.txtBudget);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        detailsViewModel.clear();
     }
-
-
 }

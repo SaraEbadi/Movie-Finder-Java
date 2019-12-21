@@ -18,7 +18,7 @@ public interface RetrofitDataService {
     );
 
     @GET("movie/{movie_id}")
-    Call<DetailsModel> getDetailsMovie(
+    Observable<DetailsModel> getDetailsMovie(
         @Path("movie_id") int movieId,
         @Query("api_key") String apiKey
     );
