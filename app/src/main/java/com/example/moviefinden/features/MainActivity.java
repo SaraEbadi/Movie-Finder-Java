@@ -9,6 +9,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.os.Bundle;
 
 import com.example.moviefinden.R;
+import com.example.moviefinden.models.DetailsModel;
+
+import java.util.Observable;
 
 public class MainActivity extends AppCompatActivity {
 
